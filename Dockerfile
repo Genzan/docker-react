@@ -1,5 +1,5 @@
 # User a Docker image as a base
-FROM node:alpine as builder
+FROM node:alpine
 
 WORKDIR '/app'
 # Download and Install dependencies
@@ -10,6 +10,6 @@ RUN npm run build
 
 # Starting of Production Fase
 FROM nginx
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=0 /app/build /usr/share/nginx/html
 
 
